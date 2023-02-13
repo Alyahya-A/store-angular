@@ -1,15 +1,53 @@
-.header {
-    text-align: center;
-    background: #33b5e5;
-    color: #fff;
-    padding: 12px;
-  }
-  
-  a {
-    color: #ffffff;
-  }
-  
-  a:active {
-    color: blue;
-  }
-  
+.body {
+  background: #f8971f;
+  color: #fff;
+}
+
+h1 {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+}
+
+button {
+  color: #fff;
+  text-align: center;
+  width: 175px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  font-size: 18px;
+  transition-duration: 0.1s;
+  border-radius: 25px;
+  padding: 12px;
+  /* transition: 0.1s; */
+}
+
+button {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button:after {
+  content: '»';
+  opacity: 0;
+  top: 14px;
+  transition: 0.5s;
+}
+
+button:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+  color: #f8971f;
+  background-color: #ffffff;
+}
+
+button:hover:after {
+  color: #f8971f;
+  opacity: 1;
+}

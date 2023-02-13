@@ -1,31 +1,23 @@
-<div class="header">
+<div class="body">
   <h1>MyStore</h1>
-  <a routerLink="/products" data-testid="productListLink">Product List</a
-  ><span> | </span>
-  <a routerLink="/cart" data-testid="cartLink">Cart</a>&nbsp;<span
-    data-testid="cartQuantity"
-    >[{{ totalCartQuantity }}]</span
-  >
-  <span *ngIf="userIsLoggedIn === false"> | </span>
-  <a
-    routerLink="/authenticate"
-    *ngIf="userIsLoggedIn === false"
-    data-testid="loginLink"
-    >Login</a
-  >
-  <span *ngIf="userIsLoggedIn === true"> | </span>
-  <a
-    routerLink="/orders"
-    *ngIf="userIsLoggedIn === true"
-    data-testid="viewOrdersLink"
-    >View Orders</a
-  >
-  <span *ngIf="userIsLoggedIn === true"> | </span>
-  <a
-    routerLink="/"
-    *ngIf="userIsLoggedIn === true"
-    (click)="logout()"
-    data-testid="logoutLink"
-    >Logout</a
-  >
+
+  <button routerLink="/products"><span>Home</span></button>
+
+  <button routerLink="/categories"><span>Categories</span></button>
+
+  <button routerLink="/cart">
+    <span>Cart [{{ totalCartQuantity }}]</span>
+  </button>
+
+  <button routerLink="/authenticate" *ngIf="userIsLoggedIn === false">
+    <span>Login</span>
+  </button>
+
+  <button routerLink="/orders" *ngIf="userIsLoggedIn === true">
+    <span>View Orders</span>
+  </button>
+
+  <button routerLink="/" *ngIf="userIsLoggedIn === true" (click)="logout()">
+    <span>Logout</span>
+  </button>
 </div>
