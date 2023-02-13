@@ -1,28 +1,35 @@
-<div class="product-card" routerLink="/products/{{ product.id }}">
-  <span>{{ product.name }}</span>
+<div class="product-card">
+  <div class="body-card" routerLink="/products/{{ product.id }}">
+    <span>{{ product.name }}</span>
+    <p>{{ product.price | currency }}</p>
+  </div>
 
-  <p>{{ product.price | currency }}</p>
-  <select class="select-dropdown" [(ngModel)]="quantity">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-  </select>
-  <button class="btn btn-primary" (click)="addToCart()">Add to cart</button>
-  <ngx-spinner
-    name="spinner-{{ product.id }}"
-    bdColor="rgba(51,51,51,0.8)"
-    size="medium"
-    color="#fff"
-    type="ball-scale"
-    [fullScreen]="false"
-  >
-    <p class="add-product-to-cart-spinner">Added to cart.</p>
-  </ngx-spinner>
+  <div>
+    <select class="select-input" [(ngModel)]="quantity">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+    <button class="button-13" role="button" (click)="addToCart()">
+      Add to cart
+    </button>
+  </div>
 </div>
+
+<ngx-spinner
+  name="spinner-{{ product.id }}"
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale"
+  [fullScreen]="false"
+>
+  <p class="add-product-to-cart-spinner">Added to cart.</p>
+</ngx-spinner>

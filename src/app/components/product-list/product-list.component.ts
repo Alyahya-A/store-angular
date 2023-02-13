@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiError } from 'src/app/models/apiError';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { prepareApiError } from 'src/app/utils/prepareApiError';
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +12,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  backendError: boolean = false;
+  apiError: ApiError = new ApiError();
 
   constructor(private productService: ProductService) {}
 
@@ -18,14 +20,12 @@ export class ProductListComponent implements OnInit {
     this.productService.getProductList().subscribe({
       next: res => {
         this.productService.setProducts(res);
-        this.backendError = false;
         this.products = this.productService.getProducts();
       },
       error: error => {
         console.error('Error getting product list: ' + JSON.stringify(error));
         this.productService.setProducts([]);
-        this.backendError = true;
-        this.products = [];
+        this.apiError = prepareApiError(error.error);
       }
     });
   }

@@ -1,4 +1,4 @@
-<div class="product-index-error" *ngIf="backendError === true">
+<div class="product-index-error" *ngIf="apiError.errorOccurred === true">
   <div>
     <h4>Error getting product list!</h4>
   </div>
@@ -6,7 +6,15 @@
     <p>Please verify backend system connectivity.</p>
   </div>
 </div>
-<div class="product-index" *ngIf="backendError === false">
+
+<div
+  class="product-index"
+  *ngIf="apiError.errorOccurred === false && products.length === 0"
+>
+  Downloading...
+</div>
+
+<div class="product-index" *ngIf="apiError.errorOccurred === false">
   <app-product-item
     *ngFor="let product of products"
     [product]="product"

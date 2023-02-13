@@ -12,14 +12,15 @@ export class CartService {
 
   addProductToCart(p: Product, q: number): void {
     const productId = p.id;
-    const cartItems = this.getCartItems();
 
-    // check if product is already in cart
+    // check if product is already exist in cart
     let productInCart;
-    for (let index = 0; index < cartItems.length; index++) {
-      const cartItem = cartItems[index];
+    for (let index = 0; index < this.cartItems.length; index++) {
+      const cartItem = this.cartItems[index];
+     
       if (cartItem.product.id === productId) {
         productInCart = cartItem;
+        break;
       }
     }
 
@@ -28,10 +29,11 @@ export class CartService {
       productInCart.quantity += q;
     } else {
       // else, add a new cart item
+
       const newCartItem = new CartItem();
       newCartItem.product = p;
       newCartItem.quantity = q;
-      cartItems.push(newCartItem);
+      this.cartItems.push(newCartItem);
     }
 
     // this.storage.set(this.CART_STORAGE_KEY, cartItems);
