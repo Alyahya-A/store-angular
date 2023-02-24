@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Product } from 'src/app/models/product';
-import { CartService } from 'src/app/services/cart-service.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -24,10 +24,8 @@ export class ProductItemComponent {
   }
 
   addToCart(): void {
-    /** spinner starts on addToCart */
     this.spinner.show('spinner-' + this.product.id);
 
-    /** spinner ends after 1 second */
     setTimeout(() => {
       this.cartService.addProductToCart(this.product, parseInt(this.quantity));
 
