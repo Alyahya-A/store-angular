@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-.button-5 {
+.button-5:enabled {
   align-items: center;
   background-clip: padding-box;
   background-color: #f8971f;
@@ -28,20 +28,47 @@
   width: auto;
 }
 
-.button-5:hover,
-.button-5:focus {
+.button-5:enabled:hover,
+.button-5:enabled:focus {
   background-color: #fb8332;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
-.button-5:hover {
+.button-5:enabled:hover {
   transform: translateY(-1px);
 }
 
-.button-5:active {
+.button-5:enabled:active {
   background-color: #c85000;
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
+}
+
+button:disabled {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #898989;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, 'Helvetica Neue', Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
 }
 
 /* CSS */
@@ -78,3 +105,27 @@
   box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
   outline: 0;
 }
+
+/* ******************************************** */
+
+input[type='submit'] {
+  color: #222222;
+}
+#wrap {
+  margin: 0 auto;
+  text-align: center;
+}
+
+form input {
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+  border: 1px ridge #d5d9d9;
+}
+
+form {
+  margin: 0 auto;
+  padding: 30px;
+}
+
+/* ******************************************** */

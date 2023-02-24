@@ -10,7 +10,8 @@
 
 <div class="detail-container" *ngIf="apiError.errorOccurred === false">
   <div class="detail-item">
-    <h4>{{ product.name }}</h4>
+    <h3>{{ product.name }}</h3>
+    <h4>{{ product.categoryname }}</h4>
     <p>{{ product.price | currency }}</p>
     <select class="select-input" [(ngModel)]="quantity">
       <option value="1">1</option>

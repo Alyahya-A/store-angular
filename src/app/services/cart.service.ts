@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { CartItem } from '../models/cartItem';
 import { Product } from '../models/product';
 
@@ -6,9 +7,14 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class CartService {
-  constructor() {}
-
+  CART_STORAGE_KEY = 'CART_STORAGE_KEY';
   private cartItems: CartItem[] = [];
+
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService) {
+    if (this.storage.has(this.CART_STORAGE_KEY)) {
+      this.cartItems = this.storage.get(this.CART_STORAGE_KEY);
+    }
+  }
 
   addProductToCart(p: Product, q: number): void {
     const productId = p.id;
@@ -17,7 +23,7 @@ export class CartService {
     let productInCart;
     for (let index = 0; index < this.cartItems.length; index++) {
       const cartItem = this.cartItems[index];
-     
+
       if (cartItem.product.id === productId) {
         productInCart = cartItem;
         break;
@@ -25,10 +31,10 @@ export class CartService {
     }
 
     if (productInCart) {
-      // if product is already in cart, update its quantity
+      // update its quantity if product already exisits
       productInCart.quantity += q;
     } else {
-      // else, add a new cart item
+      // add a new cart item if product NOT exisits
 
       const newCartItem = new CartItem();
       newCartItem.product = p;
@@ -36,17 +42,18 @@ export class CartService {
       this.cartItems.push(newCartItem);
     }
 
-    // this.storage.set(this.CART_STORAGE_KEY, cartItems);
+    this.storage.set(this.CART_STORAGE_KEY, this.cartItems);
   }
 
   getCartItems(): CartItem[] {
     return this.cartItems;
   }
 
-  removeProductFromCart(item: CartItem): void {
+  removeProductItem(item: CartItem): void {
     this.cartItems = this.getCartItems().filter(
       cartItem => cartItem.product.id !== item.product.id
     );
+
     this.updateCart();
   }
 
@@ -56,27 +63,33 @@ export class CartService {
   }
 
   updateCart(): void {
-    // update the session storage copy with what is maintained in the service
-    // this.storage.set(this.CART_STORAGE_KEY, this.cartItems);
+    this.storage.set(this.CART_STORAGE_KEY, this.cartItems);
   }
 
-  getTotalCartItemsQuantity(): number {
+  getTotalQuantity(): number {
     let totalQuantityInCart: number = 0;
+
     const cartItems = this.getCartItems();
+
     for (let index = 0; index < cartItems.length; index++) {
       const cartItem: CartItem = cartItems[index];
       totalQuantityInCart += cartItem.quantity;
     }
+
     return totalQuantityInCart;
   }
 
-  getTotalCartItemsAmount(): number {
+  getTotalAmount(): number {
     let totalCartAmount = 0;
+
     const cartItems = this.getCartItems();
+
     for (let index = 0; index < cartItems.length; index++) {
       const cartItem = cartItems[index];
-      // totalCartAmount += cartItem.product.price * cartItem.quantity;
+      totalCartAmount +=
+        Number.parseInt(cartItem.product.price) * cartItem.quantity;
     }
+
     return totalCartAmount;
   }
 }

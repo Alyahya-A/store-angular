@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { CartService } from './services/cart-service.service';
+import { CartService } from './services/cart.service';
 import { OrderService } from './services/order.service';
 import { UserService } from './services/user.service';
 
@@ -27,17 +27,16 @@ export class AppComponent {
   }
 
   cartUpdated(): void {
-    this.totalCartQuantity = this.cartService.getTotalCartItemsQuantity();
+    this.totalCartQuantity = this.cartService.getTotalQuantity();
   }
 
   userLoggedIn(): void {
-    this.userIsLoggedIn = false;
+    this.userIsLoggedIn = this.userService.isUserLoggedIn();
   }
 
   userLoggedOut(): void {
     const spinnerName = 'signout-spinner';
 
-    /** spinner starts on submitForm */
     this.spinner.show(spinnerName);
 
     setTimeout(() => {
@@ -46,6 +45,5 @@ export class AppComponent {
       this.userService.logout();
       this.userIsLoggedIn = this.userService.isUserLoggedIn();
     }, 1000);
-    //this delay is needed for visual effect only because the service call actually finishes very quickly; without this delay, the spinner and its message does not get ample time to be shown and read properly
   }
 }

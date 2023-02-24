@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit {
       next: res => {
         this.productService.setProducts(res);
         this.products = this.productService.getProducts();
+        this.apiError = new ApiError();
       },
       error: error => {
         console.error('Error getting product list: ' + JSON.stringify(error));

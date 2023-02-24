@@ -1,0 +1,36 @@
+<h4>Welcome to MyStore!</h4>
+<div class="secure-authentication-container">
+  <div class="secure-authentication-panel">
+    <p>Please sign in or create an account.</p>
+    <fieldset class="authentication-group" id="authenticationGroup">
+      <div class="signin-group-button">
+        <input
+          type="radio"
+          value="sign-in"
+          [(ngModel)]="authenticationMode"
+          id="signinRadioButton"
+          name="authenticationGroup"
+        />
+        <label for="signinRadioButton">Sign in</label>
+      </div>
+      <div class="create-account-group-button">
+        <input
+          type="radio"
+          value="create-account"
+          [(ngModel)]="authenticationMode"
+          id="createAccountRadioButton"
+          name="authenticationGroup"
+        />
+        <label for="createAccountRadioButton">Create account</label>
+      </div>
+    </fieldset>
+    <app-login-form
+      *ngIf="authenticationMode === 'sign-in'"
+      (userUpdated)="userAuthenticated()"
+    ></app-login-form>
+    <app-signup-form
+      (userUpdated)="userAuthenticated()"
+      *ngIf="authenticationMode === 'create-account'"
+    ></app-signup-form>
+  </div>
+</div>

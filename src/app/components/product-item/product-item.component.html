@@ -1,8 +1,10 @@
 <div class="product-card">
   <div class="body-card" routerLink="/products/{{ product.id }}">
-    <span>{{ product.name }}</span>
-    <p>{{ product.price | currency }}</p>
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.categoryname }}</p>
+    <br *ngIf="!product.categoryname" />
   </div>
+  <h3>{{ product.price | currency }}</h3>
 
   <div>
     <select class="select-input" [(ngModel)]="quantity">

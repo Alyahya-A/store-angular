@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiError } from 'src/app/models/apiError';
 import { Product } from 'src/app/models/product';
-import { CartService } from 'src/app/services/cart-service.service';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { prepareApiError } from 'src/app/utils/prepareApiError';
 
@@ -37,6 +37,7 @@ export class ProductItemDetailComponent implements OnInit {
     this.productService.getProduct(this.productId).subscribe({
       next: res => {
         this.product = res;
+        this.apiError = new ApiError();
       },
       error: error => {
         console.error(

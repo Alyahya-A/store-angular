@@ -1,0 +1,19 @@
+<div *ngIf="apiError.errorOccurred === true" class="system-error-message">
+  <p>{{ apiError.errorMessage }}</p>
+  <p *ngIf="apiError.statusCode === 500">TraceId: {{ apiError.traceId }}</p>
+</div>
+<div class="order-index" *ngIf="apiError.errorOccurred === false">
+  <div>
+    <h4>Order History</h4>
+  </div>
+  <div class="order-panel" *ngIf="orders.length > 0">
+    <app-order-item
+      *ngFor="let order of orders"
+      [order]="order"
+      class="order-item"
+    ></app-order-item>
+  </div>
+  <div class="orders-message" *ngIf="orders.length == 0">
+    <p>You have no recent orders.</p>
+  </div>
+</div>

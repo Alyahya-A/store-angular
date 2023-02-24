@@ -28,15 +28,11 @@ h3 {
   border: 0.25px solid #f8971f;
   color: #f8971f;
   text-align: center;
-  font-size: 32px;
   padding: 16px;
   width: 220px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 36px;
-}
-
-.body-card {
   cursor: pointer;
   display: inline-block;
   position: relative;

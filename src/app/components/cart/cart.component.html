@@ -1,0 +1,46 @@
+<div class="col" *ngIf="cartItems.length > 0">
+  <div class="col1 cart-body">
+    <div>
+      <app-cart-item
+        *ngFor="let cartItem of cartItems"
+        [cartItem]="cartItem"
+        class="cart-item"
+        (updateCartQuantity)="updateCartQuantity()"
+        (removeCartItem)="removeCartItem($event)"
+      ></app-cart-item>
+      <p class="cart-amount">Total: {{ totalCartAmount | currency }}</p>
+      <br />
+    </div>
+  </div>
+
+  <div class="checkout-body">
+    <div class="payment-details-container" *ngIf="isUserLoggedIn === true">
+      <div class="payment-checkout-container">
+        <p>
+          Welcome <b>{{ user.firstName }}</b
+          >!
+        </p>
+      </div>
+      <div>
+        <p>Please enter your payment details:</p>
+      </div>
+      <div class="payment-checkout-container">
+        <div class="payment-checkout-panel">
+          <app-checkout-form></app-checkout-form>
+        </div>
+      </div>
+    </div>
+    <div
+      class="secure-authentication-container"
+      *ngIf="isUserLoggedIn === false"
+    >
+      <app-authenticate
+        (userUpdated)="userUpdated()"
+        redirectPath="/orders"
+      ></app-authenticate>
+    </div>
+  </div>
+</div>
+<div *ngIf="cartItems.length == 0">
+  <h4>Cart is empty</h4>
+</div>

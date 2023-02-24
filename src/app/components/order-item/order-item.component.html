@@ -1,0 +1,34 @@
+<div class="order-item-container">
+  <div class="order-item-details">
+    <p>
+      Order #:&nbsp;&nbsp;<b>{{ order.id }}</b>
+    </p>
+    <p>
+      Total Amount:&nbsp;&nbsp;<b>{{ order.totalAmount | currency }}</b>
+    </p>
+    <p>
+      Status:&nbsp;&nbsp;<span
+        class="{{
+          order.status === 'Active'
+            ? 'order-status-active'
+            : 'order-status-completed'
+        }}"
+        ><b>{{ order.status }}</b></span
+      >
+    </p>
+  </div>
+  <br />
+  <h4>Products:</h4>
+  <div *ngFor="let product of order.products">
+    <div class="product-detail-item">
+      <h5>{{ product.productName }} - {{ product.categoryname }}</h5>
+
+      <p>
+        Price: <b>{{ product.productPrice | currency }}</b>
+      </p>
+      <p>
+        Quantity: <b>{{ product.quantity }}</b>
+      </p>
+    </div>
+  </div>
+</div>

@@ -7,8 +7,8 @@ export class ApiError {
 
   constructor() {
     this.errorOccurred = false;
-    this.statusCode = 0;
-    this.errorCode = 0;
+    this.statusCode = -1;
+    this.errorCode = -1;
     this.errorMessage = '';
     this.traceId = '';
   }
