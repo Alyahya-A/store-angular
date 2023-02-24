@@ -11,10 +11,8 @@ import { CartService } from 'src/app/services/cart.service';
 export class ProductItemComponent {
   quantity: string = '1';
 
-  // @Input decorator allows to pass data from parent component to child component
   @Input() product: Product;
 
-  // inject the dependencies
   constructor(
     private cartService: CartService,
     private spinner: NgxSpinnerService,

@@ -40,8 +40,6 @@ export class LoginFormComponent implements OnInit {
   submitForm(): void {
     const spinnerName = 'signin-spinner';
 
-    console.log(`herrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr`);
-
     this.spinner.show(spinnerName);
 
     this.userService.login(this.email, this.password).subscribe({

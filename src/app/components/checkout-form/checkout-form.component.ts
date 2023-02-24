@@ -22,9 +22,7 @@ export class CheckoutFormComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private el: ElementRef
-  ) {
-    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-  }
+  ) {}
 
   ngOnInit(): void {}
 
